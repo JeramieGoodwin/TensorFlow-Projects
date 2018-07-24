@@ -1,0 +1,18 @@
+DATA_PATH = os.path.join('./data','battery')
+DOWNLOAD_ROOT = 'https://ti.arc.nasa.gov/c/'
+n = [5,9,14,15,16,17]
+
+def fetch_battery_data(nasa_url = DOWNLOAD_ROOT, data_path = DATA_PATH):
+    if not os.path.isdir(data_path):
+        os.makedirs(data_path)
+    n_files = []
+    for f in n:
+        durl = urllib.parse.urljoin(nasa_url,str(f))
+        zip_path = os.path.join(data_path,"battery.zip")
+        urllib.request.urlretrieve(url=durl,filename=zip_path)
+        bat = zipfile.ZipFile(zip_path, 'r')
+        bat.extractall(path=os.path.join(data_path,'dataset_'+str(f)))
+        bat.close()
+        fcnt = len([name for name in os.listdir('./data/battery/dataset_'+str(f)) if name.endswith('.mat')])
+        n_files.append(fcnt)
+    print("Number of .mat files downloaded: %s" % np.sum(n_files))
