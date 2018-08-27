@@ -9,7 +9,6 @@ import numpy as np
 import json
 import time
 import tensorflow as tf
-import keras
 from lifelines.utils import concordance_index
 
 
@@ -41,10 +40,15 @@ class TFSurv:
                 input layer.
         """
         
-        X = tf.placeholder(dtype=tf.float32, shape=[None, n_in], name='X')
-        E = tf.placeholder(dtype = tf.float32, name='E')
+        self.X = tf.placeholder(dtype=tf.float32, shape=[None, n_in], name='X')
+        self.E = tf.placeholder(dtype = tf.float32, name='E')
         
-             
+        # Default standardization values: mean=0, std=1
+        self.offset = np.zeros(shape=n_in, dtype=np.float32)
+        self.scale = np.ones(shape=n_in, dtype=np.float32)
+        
+        nn = tf.keras.layers.Input(shape=(None,n_in))
+        
         self.standardize = standardize
         
         if activation == 'rectify':
@@ -52,32 +56,53 @@ class TFSurv:
         elif activation == 'selu':
             activation_fn = tf.nn.selu
         else:
-            raise IllegalArgumentException("Unknown activation function %s" % activation)
+            raise ValueError("Unknown activation function %s" % activation)
         
-        out = X
         in_size = n_in
         
+        # Hidden layers
         for i in hidden_layers_sizes:
             if activation_fn == tf.nn.relu:
                 weights = tf.Variable(tf.glorot_uniform_initializer((in_size,i), dtype=tf.float32))
             else:
                 weights = tf.Variable(tf.truncated_normal((in_size, i)),dtype = tf.float32)
                 
-            out = tf.layers.Dense(out, weights)
+            nn = tf.layers.Dense(weights)(nn)
             
             if batch_norm:
-                batch_mean, batch_var = tf.nn.moments(out,[0])
-                out = tf.nn.batch_normalization(x=out, mean=batch_mean,
-                                                var=batch_var)
+               nn = tf.keras.layers.BatchNormalization()(nn)
             if not dropout is None:
-                out = tf.nn.dropout(x=out, keep_prob=dropout)
-                
-            
-                
-            
-            
-                
+               nn = tf.keras.layers.Dropout(dropout)(nn)
+        
+        # Output layer
+        weights = tf.Variable(tf.truncated_normal((in_size, 1)), dtype=tf.float32)
+        bias = tf.Variable(tf.zeros(1), dtype=tf.float32)
+        nn = tf.keras.layers.Dense(weights,activation=activation_fn)(nn)
         
         
-        
-        
+    def _negative_log_likelihood(self, E, deterministic = False):
+        """Return the negative average log-likelihood of the prediction
+        of this model under a given target distribution.
+        math::
+            \frac{1}{N_D} \sum_{i \in D}[F(x_i,\theta) - log(\sum_{j \in R_i} e^F(x_j,\theta))] - \lambda P(\theta)
+        where:
+            D is the set of observed events
+            N_D is the number of observed events
+            R_i is the set of examples that are still alive at time of death t_j
+            F(x,\theta) = log hazard rate
+        Note: We assume that there are no tied event times
+        Parameters:
+            E (n,): TensorVector that corresponds to a vector that gives the censor variable for each example
+        deterministic: True or False. Determines if the output of the network
+            is calculated determinsitically.
+        Returns:
+            neg_likelihood: Theano expression that computes negative partial Cox likelihood
+            """
+        risk = self.risk(deterministic)
+        hazard_ratio = tf.exp(risk)
+        log_risk = tf.log(tf.cumsum(hazard_ratio))
+        uncensored_likelihood = risk.T - log_risk
+        censored_likelihood = uncensored_likelihood * E
+        num_observed_events = np.sum(E)
+        neg_likelihood = -tf.reduc_sum(censored_likelihood) / num_observed_events
+        return neg_likelihood
