@@ -10,7 +10,6 @@ import json
 import time
 import tensorflow as tf
 import keras
-from keras.layers import *
 from lifelines.utils import concordance_index
 
 
@@ -42,8 +41,8 @@ class TFSurv:
                 input layer.
         """
         
-        self.X = tf.placeholder(dtype=tf.float32, shape=[None, n_in], name='X')
-        self.E = tf.placeholder(dtype = tf.float32, name='E')
+        X = tf.placeholder(dtype=tf.float32, shape=[None, n_in], name='X')
+        E = tf.placeholder(dtype = tf.float32, name='E')
         
              
         self.standardize = standardize
@@ -55,7 +54,7 @@ class TFSurv:
         else:
             raise IllegalArgumentException("Unknown activation function %s" % activation)
         
-        out = x
+        out = X
         in_size = n_in
         
         for i in hidden_layers_sizes:
@@ -64,7 +63,7 @@ class TFSurv:
             else:
                 weights = tf.Variable(tf.truncated_normal((in_size, i)),dtype = tf.float32)
                 
-            out = tf.layers(out, weights)
+            out = tf.layers.Dense(out, weights)
             
             if batch_norm:
                 batch_mean, batch_var = tf.nn.moments(out,[0])
