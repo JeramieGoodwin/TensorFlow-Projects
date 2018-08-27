@@ -1,0 +1,135 @@
+[33mcommit ba8dff6da384c89d60bc9ae236fb7eff97285e4c[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Jeramie Goodwin <jeramieg262@gmail.com>
+Date:   Thu Aug 23 09:15:28 2018 -0700
+
+    Create __init__.py
+
+[33mcommit f4c165a5d0a51cf330704eb2467bd236ebf046d7[m
+Author: Jeramie Goodwin <jeramieg262@gmail.com>
+Date:   Mon Aug 20 15:30:03 2018 -0700
+
+    add GP regression notebook; updated WTTE-RNN; cloned keras-wtte-rnn
+
+[33mcommit 007dd859e05b1e02e79546fba7786eb8cb4f4907[m
+Author: Jeramie Goodwin <jeramieg262@gmail.com>
+Date:   Thu Aug 2 11:55:32 2018 -0700
+
+    cloned repo
+
+[33mcommit 9482aa23c8423181c0a913043122706090f09ca1[m
+Author: Jeramie Goodwin <jeramieg262@gmail.com>
+Date:   Thu Aug 2 11:39:27 2018 -0700
+
+    cloned wtte-rnn lib
+
+[33mcommit 4df7b39c6f3beafb1f9a796a8c241504ebeac489[m
+Author: Jeramie Goodwin <jeramieg262@gmail.com>
+Date:   Thu Aug 2 11:10:24 2018 -0700
+
+    renamed dir
+    
+    Renamed directory for Turbofan analysis
+
+[33mcommit fad801d2ab8545a17d9d897a0905b8cf9c262f73[m
+Author: Jeramie Goodwin <jeramieg262@gmail.com>
+Date:   Thu Aug 2 10:48:10 2018 -0700
+
+    added analysis notebook
+    
+    Notebook using the WTTE-RNN methid to predict RUL value
+
+[33mcommit fe9223267b013d46062ea36b9fce49462f508eb2[m
+Author: Jeramie Goodwin <jeramieg262@gmail.com>
+Date:   Thu Jul 26 16:39:57 2018 -0700
+
+    dataset change
+
+[33mcommit 41065b3f6ae7fe04c4febe33ce319cc46e7718d8[m
+Author: Jeramie Goodwin <jeramieg262@gmail.com>
+Date:   Mon Jul 23 22:47:16 2018 -0700
+
+    modified notebook
+    
+    changed data source
+
+[33mcommit 8d2201ccff219a66ea6c440aec390db2e79cce0a[m
+Author: Jeramie Goodwin <jeramie.goodwin623@gmail.com>
+Date:   Mon Jul 23 12:18:42 2018 -0700
+
+    add helper functions
+    
+    added helper functions which process .mat files
+
+[33mcommit 26c898d11ad656ac5d2e036ed9a694694f6754c9[m
+Author: Jeramie Goodwin <jeramie.goodwin623@gmail.com>
+Date:   Mon Jul 23 12:17:57 2018 -0700
+
+    create utils folder
+    
+    added folder to hold helper functions
+
+[33mcommit 5751838efabae785ffb4b41177f54f868395b758[m
+Author: Jeramie Goodwin <jeramie.goodwin623@gmail.com>
+Date:   Mon Jul 23 12:17:07 2018 -0700
+
+    delete home.txt
+
+[33mcommit cebbaa7ba82499bf4985ef99b8ddcb99f4b97192[m
+Author: Jeramie Goodwin <jeramie.goodwin623@gmail.com>
+Date:   Mon Jul 23 12:16:47 2018 -0700
+
+    uploaded new notebook
+
+[33mcommit 449121d4117c7b01735da3e435fffe671383c9d9[m
+Author: Jeramie Goodwin <jeramieg262@gmail.com>
+Date:   Mon Jul 23 12:16:02 2018 -0700
+
+    create new folder
+
+[33mcommit 31f591e00e49993ac005122773d283b83719b998[m
+Author: Jeramie Goodwin <jeramieg262@gmail.com>
+Date:   Mon Jul 23 12:15:11 2018 -0700
+
+    delete nasa
+
+[33mcommit e6a7bbd6e5a1ae5ad92364c5250ac43c59e107c6[m
+Author: Jeramie Goodwin <jeramieg262@gmail.com>
+Date:   Mon Jul 23 12:14:55 2018 -0700
+
+    Create NASA Li-Ion Battery Degradation folder
+
+[33mcommit ca8b984378acb7698134097065fd139b1c0a3ca0[m
+Author: Jeramie Goodwin <jeramieg262@gmail.com>
+Date:   Mon Jul 23 12:13:54 2018 -0700
+
+    Delete NASA battery
+
+[33mcommit 0937cde1027e379033af94e67213f42559fdab9b[m
+Author: Jeramie Goodwin <jeramieg262@gmail.com>
+Date:   Fri Jul 20 14:19:07 2018 -0700
+
+    add introduction notebook
+
+[33mcommit 74ec2878049afc529908e1871c7290d466b1a11a[m
+Author: Jeramie Goodwin <jeramie.goodwin623@gmail.com>
+Date:   Fri Jul 20 10:50:18 2018 -0700
+
+    Delete __init__.py
+
+[33mcommit 00e7d12e54ba3d5f22195b038626545c7e42f277[m
+Author: Jeramie Goodwin <jeramie.goodwin623@gmail.com>
+Date:   Fri Jul 20 10:50:00 2018 -0700
+
+    Delete data
+
+[33mcommit e5e25497d482433e46b9e55fd176a002bfb660bb[m
+Author: Jeramie Goodwin <jeramie.goodwin623@gmail.com>
+Date:   Fri Jul 20 10:46:19 2018 -0700
+
+    Delete hello.txt
+
+[33mcommit 7aa845e8aa888889f55ae8e1a80bf470e6296c84[m
+Author: Jeramie Goodwin <jeramie.goodwin623@gmail.com>
+Date:   Fri Jul 20 10:45:33 2018 -0700
+
+    deleting ipynb checkpoints
